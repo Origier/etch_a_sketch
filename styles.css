@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Mali');
+
+#sketch-container {
+  width: 1000px;
+  height: 1000px;
+  border: solid 2px black;
+  margin-bottom: 50px;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+.margin-top {
+  margin-top: 50px;
+}
+
+.pixel {
+  background-color: black;
+  width: 100px;
+  height: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+html {
+  font-family: Mali, cursive;
+}
