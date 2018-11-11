@@ -1,25 +1,52 @@
 const pixelDemand = document.querySelector('#pixel-demand');
 const pixelateBtn = document.querySelector('#pixelate');
+const containerSize = document.querySelector('#container-size');
+const eraserModeToggle = document.querySelector('#eraser-mode');
+const resetButton = document.querySelector('#reset');
+let eraserMode = 'off';
 let sketchContainer = document.querySelector('#sketch-container'); 
 let sketchPixels = [];
 let sketchRows = [];
 let numberOfPixels = 16;
 let pixelHeight;
 let initialRun = false;
+let mouseDown = false;
 
 pixelateBtn.addEventListener('click', pixelateContainer)
+eraserModeToggle.addEventListener('click', toggleEraserMode);
+resetButton.addEventListener('click', reset);
+
+createContainerListener();
 
 createGrid(numberOfPixels);
 
 function pixelateContainer() {
-  removeGrid(numberOfPixels);
+  removeGrid(numberOfPixels); 
   numberOfPixels = pixelDemand.value;
   numberOfPixels = parseInt(numberOfPixels);
   if(isNaN(numberOfPixels)){
     alert('Try entering an integer.');
   } else {
+    containerSize.textContent = numberOfPixels + ' x ' + numberOfPixels;
     createGrid(numberOfPixels);
   }
+}
+
+function toggleEraserMode() {
+  if(eraserMode == 'on'){
+    eraserMode = 'off';
+    eraserModeToggle.textContent = 'Off';
+    eraserModeToggle.classList.toggle('toggled');
+  } else {
+    eraserMode = 'on';
+    eraserModeToggle.textContent = 'On';
+    eraserModeToggle.classList.toggle('toggled');
+  }
+}
+
+function reset() {
+  removeGrid(numberOfPixels);
+  createGrid(numberOfPixels);
 }
 
 function createGrid(pixels) {
@@ -34,20 +61,30 @@ function createGrid(pixels) {
   if (pixelHeight % 1 == 0){
     sketchContainer.setAttribute('style', `height: 900px; width: 900px;`);
   } else {
-    sketchContainer.setAttribute('style', `height: ${(pixelHeight * numberOfPixels).toFixed(2) -3}px; width: ${(pixelHeight * numberOfPixels).toFixed(2) -3}px;`);
+    sketchContainer.setAttribute('style', `height: ${(pixelHeight * numberOfPixels).toFixed(2) -4}px; width: ${(pixelHeight * numberOfPixels).toFixed(2) -4}px;`);
   }
   createHoverListener();
 }
 
-function createListener() {
-  sketchContainer.addEventListener('mousedown', createHoverListener);
+function createContainerListener() {
+  sketchContainer.addEventListener('click', () => {
+    if(mouseDown){
+      mouseDown = false;
+    } else {
+      mouseDown = true;
+    }
+  });
 }
 
 function createHoverListener() {
   const pixels = document.querySelectorAll('.pixel');
   pixels.forEach((pixel) => {
     pixel.addEventListener('mouseover', (e) => {
-      changeColor(e);
+      if(mouseDown){
+        changeColor(e);
+      } else {
+        return;
+      }
     });
   });
 }
@@ -82,5 +119,9 @@ function createPixel(j, pixels) {
 }
 
 function changeColor(e) {
-  e.target.classList.add('black');
+  if(eraserMode == 'on'){
+    e.target.classList.remove('black');
+  } else {
+     e.target.classList.add('black');
+  }
 }
