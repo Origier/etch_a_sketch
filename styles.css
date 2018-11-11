@@ -3,7 +3,8 @@
 #sketch-container {
   width: 900px;
   height: 900px;
-  border: solid 2px black;
+  border: solid 10px black;
+  border-radius: 10px;
   margin-bottom: 50px;
 }
 
@@ -60,16 +61,23 @@
 
 .row {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .pixel {
-  background-color: black;
   margin: 0;
 }
 
 .position-abs {
   position: absolute;
 }
+
+/*Color classes for toggling based on the the users selection*/
+
+.black {
+  background-color: black;
+}
+
 
 html {
   font-family: Mali, cursive;
