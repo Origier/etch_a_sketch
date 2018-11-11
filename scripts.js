@@ -1,16 +1,63 @@
+const pixelDemand = document.querySelector('#pixel-demand');
+const pixelateBtn = document.querySelector('#pixelate');
 let sketchContainer = document.querySelector('#sketch-container');
-let sketchRow = document.createElement('div');
-let sketchPixel = document.createElement('div');
+let sketchRows = [];  
+let sketchPixels = [];
 let numberOfPixels = 16;
+let initialRun = false;
 
-sketchRow.classList.add('row');
-sketchPixel.classList.add('pixel');
+pixelateBtn.addEventListener('click', pixelateContainer);
 
-//start by creating a 16x16 grid || listen for the users input on how many pixels they want
+initialize();
 
+function initialize() {
+  if (initialRun) {
+    return;
+  } else {
+    initialRun = true;
+    createGrid(numberOfPixels);
+  }
+}
 
+function pixelateContainer() {
+  removeGrid(numberOfPixels);
+  numberOfPixels = pixelDemand.value;
+  numberOfPixels = parseInt(numberOfPixels);
+  createGrid(numberOfPixels);
+  return;
+}
 
-//create the number of rows based on the user input
+function createGrid(pixels) {
+  alert(numberOfPixels);
+  for (let i = 0; i < pixels; i++) {
+    createRow(i);
+    for (let j = 0; j < pixels; j++) {
+      createPixel(j, pixels);
+      sketchRows[i].appendChild(sketchPixels[j]);
+    }
+    sketchContainer.appendChild(sketchRows[i]);
+  }
+}
+
+function removeGrid(pixels) {
+  for (let i = 0; i < pixels; i++) {
+    sketchContainer.removeChild(sketchRows[i]);
+  }
+  sketchRows = [];
+  sketchPixels = [];
+}
+
+function createRow(i) {
+  sketchRows[i] = document.createElement('div');
+  sketchRows[i].classList.add('row');
+}
+
+function createPixel(j, pixels) {
+  let height = 900/pixels;
+  sketchPixels[j] = document.createElement('div');
+  sketchPixels[j].classList.add('pixel');
+  sketchPixels[j].setAttribute('style', `height: ${height}px; width: ${height}px;`);
+}
 
 //append pixels to each row for the number the user input
 
