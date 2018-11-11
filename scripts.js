@@ -89,7 +89,6 @@ function createHoverListener() {
   });
 }
 
-
 function removeHoverListener() {
   pixels.forEach((pixel) => {
     pixel.removeEventListener('mouseover', (e) => {
@@ -120,8 +119,38 @@ function createPixel(j, pixels) {
 
 function changeColor(e) {
   if(eraserMode == 'on'){
-    e.target.classList.remove('black');
+    e.target.classList.remove('black', 'red', 'blue', 'orange', 'yellow', 'purple', 'green');
   } else {
-     e.target.classList.add('black');
+    switch(document.querySelector('input[name="color"]:checked').value) {
+      case 'black':
+      e.target.classList.remove('red', 'blue', 'orange', 'yellow', 'purple', 'green');
+      e.target.classList.add('black');
+      break;
+      case 'red':
+      e.target.classList.remove('black', 'blue', 'orange', 'yellow', 'purple', 'green');
+      e.target.classList.add('red');
+      break;
+      case 'blue':
+      e.target.classList.remove('red', 'black', 'orange', 'yellow', 'purple', 'green');
+      e.target.classList.add('blue');
+      break;
+      case 'orange':
+      e.target.classList.remove('red', 'blue', 'black', 'yellow', 'purple', 'green');
+      e.target.classList.add('orange');
+      break;
+      case 'yellow':
+      e.target.classList.remove('red', 'blue', 'orange', 'black', 'purple', 'green');
+      e.target.classList.add('yellow');
+      break;
+      case 'purple':
+      e.target.classList.remove('red', 'blue', 'orange', 'yellow', 'black', 'green');
+      e.target.classList.add('purple');
+      break;
+      case 'green':
+      e.target.classList.remove('red', 'blue', 'orange', 'yellow', 'purple', 'black');
+      e.target.classList.add('green');
+      break;
+    }
+     
   }
 }

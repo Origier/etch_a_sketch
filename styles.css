@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Mali');
 
+#color-selection {
+  flex-direction: column;
+  top: 300px;
+  left: 70px;
+  align-items: flex-end;
+  font-size: 20px;
+}
+
+#container-area {
+  width: 1000px;
+}
+
 #removal-buttons {
   flex-direction: column;
   width: 250px;
@@ -21,8 +33,9 @@
 }
 
 #container-size {
-  top: 98px;
-  left: 1300px;
+  float: right;
+  top: -35px;
+  left: -100px;
 }
 
 #pixel-demand {
@@ -102,12 +115,39 @@
   position: absolute;
 }
 
+.position-rel {
+  position: relative;
+}
+
 /*Color classes for toggling based on the the users selection*/
 
 .black {
   background-color: black;
 }
 
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.green {
+  background-color: green;
+}
 
 html {
   font-family: Mali, cursive;

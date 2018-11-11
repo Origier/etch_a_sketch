@@ -8,25 +8,58 @@
   <body>
     <header>
       <h1 class="center margin-top">Etch-a-Sketch</h1>
-      <p class="center margin-top-small">Click once to start drawing, click again to stop drawing.</p>
-      <p id="container-size" class="position-abs">16 x 16</p>
     </header>
     <main>
-      <div id="sketch-container" class="center"></div>
+      <div class="center" id="container-area">
+        <p class="center margin-top-small">Click once to start drawing, click again to stop drawing.</p>
+        <p id="container-size" class="position-rel">16 x 16</p>
+        <div id="sketch-container" class="center"></div>
+      </div>
       <form id="user-input" class="position-abs">
         <p>How many pixels do you want on each side:</p>
         <div class="flex">
-          <input type="text" id="pixel-demand">
+          <input type="text" id="pixel-demand" placeholder="128 recommended">
           <button id="pixelate" type="button" class="button">Pixelate</button>
         </div>
         <div id="removal-buttons" class="margin-top flex">
-          <div>
-            <label for="eraser-mode">Eraser Mode:</label>
-            <button type="button" id="eraser-mode" class="button">Off</button>
+            <div>
+              <label for="eraser-mode">Eraser Mode:</label>
+              <button type="button" id="eraser-mode" class="button">Off</button>
+            </div>
+            <button type="button" id="reset" class="button margin-top-small">Reset</button>
           </div>
-          <button type="button" id="reset" class="button margin-top-small">Reset</button>
-        </div>
       </form>
+      <div id="color-selection" class="flex position-abs">
+        <h4>Select which color you would like to use:</h4>
+        <div>
+          <label for="black">Black</label>
+          <input type="radio" name="color" value="black" checked="checked">
+        </div>
+        <div>
+          <label for="red">Red</label>
+          <input type="radio" name="color" value="red">
+        </div>
+        <div>
+          <label for="blue">Blue</label>
+          <input type="radio" name="color" value="blue">
+        </div>
+        <div>
+          <label for="orange">Orange</label>
+          <input type="radio" name="color" value="orange">
+        </div>
+        <div>
+          <label for="yellow">Yellow</label>
+          <input type="radio" name="color" value="yellow">
+        </div>
+        <div>
+          <label for="purple">Purple</label>
+          <input type="radio" name="color" value="purple">
+        </div>
+        <div>
+          <label for="green">Green</label>
+          <input type="radio" name="color" value="green">
+        </div>
+      </div>
     </main>
     <script src="scripts.js"></script>
   </body>
