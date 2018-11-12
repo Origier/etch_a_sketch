@@ -6,6 +6,7 @@
   left: 70px;
   align-items: flex-end;
   font-size: 20px;
+  width: 14vw;
 }
 
 #container-area {
@@ -14,8 +15,8 @@
 
 #removal-buttons {
   flex-direction: column;
-  width: 250px;
-  margin-left: -110px;
+  width: 150px;
+  margin-left: -10px;
   align-items: flex-end;
 }
 
@@ -64,6 +65,10 @@
 #removal-buttons .toggled {
   background-color: rgba(0,0,0,.75);
   color: white;
+}
+
+.text-align-end {
+  text-align: end;
 }
 
 .flex {
